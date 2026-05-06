@@ -51,7 +51,7 @@ export function ProductSlideshow({
               src={`/products/${image}`}
               alt={title}
               width={1024}
-              height={768}
+              height={800}
               className="rounded-lg object-fill"
             />
           </SwiperSlide>
@@ -72,7 +72,7 @@ export function ProductSlideshow({
               src={`/products/${image}`}
               alt={title}
               width={300}
-              height={200}
+              height={300}
               className="rounded-lg object-fill"
             />
           </SwiperSlide>
