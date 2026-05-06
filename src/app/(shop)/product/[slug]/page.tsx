@@ -1,7 +1,8 @@
-import { SizeSelector } from "@/components";
+import { notFound } from "next/navigation";
+
+import { QuantitySelector, SizeSelector } from "@/components";
 import { titleFont } from "@/config/fonts";
 import { initialData } from "@/seed/seed";
-import { notFound } from "next/navigation";
 
 type ProductSlugPageProps = {
   params: Promise<{
@@ -41,6 +42,7 @@ export default async function ProductSlugPage({
         />
 
         {/* Selector de cantidad */}
+        <QuantitySelector quantity={2} />
 
         {/* Button */}
         <button className="btn-primary my-5 cursor-pointer">
