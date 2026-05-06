@@ -15,7 +15,7 @@ export function TopMenu() {
       <div>
         <Link href="/">
           <span className={`${titleFont.className} antialiased font-bold`}>
-            E-Commerce
+            Mi negocio
           </span>
           <span> | Shop</span>
         </Link>
