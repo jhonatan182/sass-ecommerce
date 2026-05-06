@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { QuantitySelector, Title } from "@/components";
+import { Divider, QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 
 const productsInCart = [
@@ -59,7 +59,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Divider */}
-            <div className="w-full h-px bg-gray-200 my-10" />
+            <Divider />
 
             <h2 className="text-2xl mb-2 font-bold">Resumen de orden</h2>
 

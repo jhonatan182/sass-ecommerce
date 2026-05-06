@@ -3,6 +3,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 
+import { Divider } from "@/components";
 import { useUIStore } from "@/store";
 import {
   IoCloseOutline,
@@ -94,7 +95,7 @@ export function Sidebar() {
         </Link>
 
         {/* Divider */}
-        <div className="w-full h-px bg-gray-200 my-10" />
+        <Divider />
 
         <Link
           href="/"
