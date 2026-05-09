@@ -13,6 +13,10 @@ export * from "./ui/divider/Divider";
 export * from "./ui/not-found/PageNotFound";
 
 export * from "./ui/sibebar/Sidebar";
+export * from "./ui/sibebar/SidebarFilters";
+export * from "./ui/sibebar/SibebarBackgroundBlack";
+export * from "./ui/sibebar/SibebarBackgroundBlur";
+export * from "./ui/sibebar/SidebarItem";
 
 export * from "./ui/title/Title";
 

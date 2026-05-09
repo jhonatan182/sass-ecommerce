@@ -1,10 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import clsx from "clsx";
-
-import { Divider } from "@/components";
-import { useUIStore } from "@/store";
 import {
   IoCloseOutline,
   IoLogInOutline,
@@ -16,6 +12,14 @@ import {
   IoTicketOutline,
 } from "react-icons/io5";
 
+import { useUIStore } from "@/store";
+import {
+  Divider,
+  SibebarBackgroundBlack,
+  SibebarBackgroundBlur,
+  SidebarItem,
+} from "@/components";
+
 export function Sidebar() {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
   const closeSideMenu = useUIStore((state) => state.closeSideMenu);
@@ -23,18 +27,11 @@ export function Sidebar() {
   return (
     <div>
       {/* Background black */}
-      {isSideMenuOpen && (
-        <div className="fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30" />
-      )}
+      {isSideMenuOpen && <SibebarBackgroundBlack />}
 
       {/* Blur */}
 
-      {isSideMenuOpen && (
-        <div
-          onClick={closeSideMenu}
-          className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm"
-        />
-      )}
+      {isSideMenuOpen && <SibebarBackgroundBlur onClick={closeSideMenu} />}
 
       {/* Sidemenu */}
       <nav
@@ -62,64 +59,17 @@ export function Sidebar() {
         </div>
 
         {/* Menu items */}
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-        >
-          <IoPersonOutline size={20} />
-          <span className="ml-2">Perfil</span>
-        </Link>
-
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-        >
-          <IoTicketOutline size={20} />
-          <span className="ml-2">Órdenes</span>
-        </Link>
-
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-        >
-          <IoLogInOutline size={20} />
-          <span className="ml-2">Ingresar</span>
-        </Link>
-
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-        >
-          <IoLogOutOutline size={20} />
-          <span className="ml-2">Salir</span>
-        </Link>
+        <SidebarItem href="/" icon={IoPersonOutline} label="Perfil" />
+        <SidebarItem href="/" icon={IoTicketOutline} label="Órdenes" />
+        <SidebarItem href="/" icon={IoLogInOutline} label="Ingresar" />
+        <SidebarItem href="/" icon={IoLogOutOutline} label="Salir" />
 
         {/* Divider */}
         <Divider />
 
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-        >
-          <IoShirtOutline size={20} />
-          <span className="ml-2">Productos</span>
-        </Link>
-
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-        >
-          <IoTicketOutline size={20} />
-          <span className="ml-2">Órdenes</span>
-        </Link>
-
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-        >
-          <IoPeopleOutline size={20} />
-          <span className="ml-2">Usuarios</span>
-        </Link>
+        <SidebarItem href="/" icon={IoShirtOutline} label="Productos" />
+        <SidebarItem href="/" icon={IoTicketOutline} label="Órdenes" />
+        <SidebarItem href="/" icon={IoPeopleOutline} label="Usuarios" />
 
         <div />
       </nav>
