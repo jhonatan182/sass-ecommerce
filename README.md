@@ -6,6 +6,7 @@
 2. Crear una copia del archivo `.env.example` y renombrarlo a `.env`
 3. Configurar las variables de entorno necesarias
 4. Instalar las dependencias con `bun install`
-5. Ejecutar `bun run dev`
+5. Ejecutar las migraciones de Prisma `bunx prisma migrete dev`
+6. Ejecutar `bun run dev`
 
 ## Correr en prod
