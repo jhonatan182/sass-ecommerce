@@ -14,9 +14,13 @@ import { useUIStore } from "@/store";
 export function TopMenu() {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
   const openFilters = useUIStore((state) => state.openFilters);
+  const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
+  const isFiltersOpen = useUIStore((state) => state.isFiltersOpen);
 
   return (
-    <nav className="flex px-5 justify-between items-center w-full p-2 fixed top-0 left-0 right-0 z-50 bg-white">
+    <nav
+      className={`flex px-5 justify-between items-center w-full p-2 fixed top-0 left-0 right-0 z-50 bg-white ${isFiltersOpen || isSideMenuOpen ? "hidden" : ""}`}
+    >
       {/* Filtro - solo en movil */}
       <div className="sm:hidden">
         <IoFilterOutline className="w-5 h-5" onClick={openFilters} />
