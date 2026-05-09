@@ -1,6 +1,11 @@
 "use client";
 
-import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
+import {
+  IoSearchOutline,
+  IoCartOutline,
+  IoFilterOutline,
+  IoMenuOutline,
+} from "react-icons/io5";
 import Link from "next/link";
 
 import { titleFont } from "@/config/fonts";
@@ -8,9 +13,15 @@ import { useUIStore } from "@/store";
 
 export function TopMenu() {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
+  const openFilters = useUIStore((state) => state.openFilters);
 
   return (
-    <nav className="flex px-5 justify-between items-center w-full">
+    <nav className="flex px-5 justify-between items-center w-full p-2">
+      {/* Filtro - solo en movil */}
+      <div className="sm:hidden">
+        <IoFilterOutline className="w-5 h-5" onClick={openFilters} />
+      </div>
+
       {/* Logo */}
       <div>
         <Link href="/">
@@ -56,12 +67,14 @@ export function TopMenu() {
           </div>
         </Link>
 
-        <button
+        <IoMenuOutline className="w-6 h-6" onClick={openSideMenu} />
+
+        {/* <button
           className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
           onClick={openSideMenu}
         >
           Menú
-        </button>
+        </button> */}
       </div>
     </nav>
   );
