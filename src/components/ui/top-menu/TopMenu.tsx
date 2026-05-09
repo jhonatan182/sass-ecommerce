@@ -16,7 +16,7 @@ export function TopMenu() {
   const openFilters = useUIStore((state) => state.openFilters);
 
   return (
-    <nav className="flex px-5 justify-between items-center w-full p-2">
+    <nav className="flex px-5 justify-between items-center w-full p-2 fixed top-0 left-0 right-0 z-50 bg-white">
       {/* Filtro - solo en movil */}
       <div className="sm:hidden">
         <IoFilterOutline className="w-5 h-5" onClick={openFilters} />
@@ -67,7 +67,9 @@ export function TopMenu() {
           </div>
         </Link>
 
-        <IoMenuOutline className="w-6 h-6" onClick={openSideMenu} />
+        <div className="mx-2">
+          <IoMenuOutline className="w-6 h-6" onClick={openSideMenu} />
+        </div>
 
         {/* <button
           className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
