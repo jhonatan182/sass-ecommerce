@@ -1,11 +1,14 @@
-import { initialData } from "./seed";
+import "dotenv/config";
 
-interface SeedProduct {
-  adadsf: string;
-}
+import { initialData } from "./seed";
+import prisma from "../lib/prisma";
 
 async function main() {
-  console.log(initialData);
+  await Promise.all([
+    prisma.productImage.deleteMany(),
+    prisma.product.deleteMany(),
+    prisma.category.deleteMany(),
+  ]);
 
   console.log("Seeding database...");
 }
