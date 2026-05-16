@@ -1,5 +1,6 @@
 import { Product } from "@/interfaces";
 
+
 interface SeedData {
   products: Product[];
 }
