@@ -1,3 +1,5 @@
+"use client";
+
 import { titleFont } from "@/config/fonts";
 import Link from "next/link";
 

@@ -61,6 +61,7 @@ export function Pagination({ totalPages }: Props) {
                   {
                     "bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:text-white":
                       page === currentPageFromUrl,
+                    "pointer-events-none": page === currentPageFromUrl,
                   },
                 )}
                 href={createPageUrl(page)}
