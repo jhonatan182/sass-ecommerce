@@ -6,18 +6,14 @@ export * from "./product/slideshow/ProductSlideshow";
 export * from "./products/product-grid/ProductGrid";
 export * from "./products/product-grid/ProductGripItem";
 
-export * from "./ui/footer/Footer";
-
 export * from "./ui/divider/Divider";
-
+export * from "./ui/footer/Footer";
 export * from "./ui/not-found/PageNotFound";
-
-export * from "./ui/sibebar/Sidebar";
-export * from "./ui/sibebar/SidebarFilters";
+export * from "./ui/pagination/Pagination";
 export * from "./ui/sibebar/SibebarBackgroundBlack";
 export * from "./ui/sibebar/SibebarBackgroundBlur";
+export * from "./ui/sibebar/Sidebar";
+export * from "./ui/sibebar/SidebarFilters";
 export * from "./ui/sibebar/SidebarItem";
-
 export * from "./ui/title/Title";
-
 export * from "./ui/top-menu/TopMenu";
