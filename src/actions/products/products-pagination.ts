@@ -6,6 +6,7 @@ import prisma from "@/lib/prisma";
 export async function getPaginatedProductsWithImages({
   page = 1,
   take = 12,
+  gender,
 }: PaginationOptions) {
   //validar page
   if (isNaN(Number(page))) page = 1;
@@ -27,13 +28,18 @@ export async function getPaginatedProductsWithImages({
           },
         },
       },
+      where: {
+        gender: gender,
+      },
     });
 
     //total paginas
-    const totalCount = await prisma.product.count({});
+    const totalCount = await prisma.product.count({
+      where: {
+        gender: gender,
+      },
+    });
     const totalPages = Math.ceil(totalCount / take);
-
-    console.log({ totalPages });
 
     return {
       products: products.map((product) => {
