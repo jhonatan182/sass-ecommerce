@@ -5,9 +5,11 @@ import {
   ProductSlideshow,
   QuantitySelector,
   SizeSelector,
+  StockLabel,
 } from "@/components";
 import { titleFont } from "@/config/fonts";
-import { initialData } from "@/seed/seed";
+import { getProductBySlug } from "@/actions";
+import { Metadata, ResolvingMetadata } from "next";
 
 type ProductSlugPageProps = {
   params: Promise<{
@@ -15,14 +17,32 @@ type ProductSlugPageProps = {
   }>;
 };
 
-const seedProducts = initialData.products;
+export async function generateMetadata(
+  { params }: ProductSlugPageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const slug = (await params).slug;
+
+  // fetch post information
+  const product = await getProductBySlug(slug);
+
+  return {
+    title: product?.title || "Producto no encontrado",
+    description: product?.description || "Descripción no disponible",
+    openGraph: {
+      title: product?.title || "Producto no encontrado",
+      description: product?.description || "Descripción no disponible",
+      images: [`/products/${product?.images[1]}`],
+    },
+  };
+}
 
 export default async function ProductSlugPage({
   params,
 }: ProductSlugPageProps) {
   const { slug } = await params;
 
-  const product = seedProducts.find((product) => product.slug === slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
@@ -49,6 +69,8 @@ export default async function ProductSlugPage({
 
       {/* Detalles */}
       <div className="col-span-1 px-5 ">
+        <StockLabel slug={product.slug} />
+
         <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>
           {product.title}
         </h1>
