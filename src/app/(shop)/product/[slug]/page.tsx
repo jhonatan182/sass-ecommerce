@@ -9,12 +9,33 @@ import {
 } from "@/components";
 import { titleFont } from "@/config/fonts";
 import { getProductBySlug } from "@/actions";
+import { Metadata, ResolvingMetadata } from "next";
 
 type ProductSlugPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+export async function generateMetadata(
+  { params }: ProductSlugPageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const slug = (await params).slug;
+
+  // fetch post information
+  const product = await getProductBySlug(slug);
+
+  return {
+    title: product?.title || "Producto no encontrado",
+    description: product?.description || "Descripción no disponible",
+    openGraph: {
+      title: product?.title || "Producto no encontrado",
+      description: product?.description || "Descripción no disponible",
+      images: [`/products/${product?.images[1]}`],
+    },
+  };
+}
 
 export default async function ProductSlugPage({
   params,
