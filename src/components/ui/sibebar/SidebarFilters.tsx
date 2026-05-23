@@ -52,21 +52,21 @@ export function SidebarFilters() {
           <SidebarItem
             icon={IoManOutline}
             label="Hombres"
-            href="/category/men"
+            href="/gender/men"
             onClick={closeFilters}
           />
 
           <SidebarItem
             icon={IoWomanOutline}
             label="Mujeres"
-            href="/category/women"
+            href="/gender/women"
             onClick={closeFilters}
           />
 
           <SidebarItem
             icon={IoShirtOutline}
             label="Niños"
-            href="/category/kid"
+            href="/gender/kid"
             onClick={closeFilters}
           />
         </div>
