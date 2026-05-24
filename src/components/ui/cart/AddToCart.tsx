@@ -1,7 +1,8 @@
 "use client";
 
-import { QuantitySelector, SizeSelector } from "@/components";
 import { useState } from "react";
+
+import { QuantitySelector, SizeSelector } from "@/components";
 import type { CartProduct, Product, Size } from "@/interfaces";
 import { useCartStore } from "@/store";
 
@@ -23,13 +24,14 @@ export function AddToCart({ product }: AddToCartProps) {
 
     // console.log("Agregando al carrito", { size, quantity });
     const cartProduct: CartProduct = {
-      id: product.id,
+      id: product.id!,
       slug: product.slug,
       title: product.title,
       price: product.price,
       quantity: quantity,
       size: size,
       image: product.images[0],
+      inStock: product.inStock,
     };
 
     addProductToCart(cartProduct);

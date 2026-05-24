@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Product } from "@/interfaces";
+import { currencyFormat } from "@/utils";
 
 type ProductGripItemProps = {
   product: Product;
@@ -31,7 +32,7 @@ export function ProductGripItem({ product }: ProductGripItemProps) {
         <Link className="hover:text-blue-600" href={`/product/${product.slug}`}>
           {product.title}
         </Link>
-        <span className="font-bold">L.{product.price}</span>
+        <span className="font-bold">{currencyFormat(product.price)}</span>
       </div>
     </div>
   );
