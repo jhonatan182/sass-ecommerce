@@ -7,6 +7,7 @@ import { QuantitySelector } from "@/components";
 import { useCartStore } from "@/store";
 import { useMounted } from "@/hook";
 import { currencyFormat } from "@/utils";
+import { redirect } from "next/navigation";
 
 export function ProductsInCart() {
   const mounted = useMounted();
@@ -18,6 +19,10 @@ export function ProductsInCart() {
   const removeProduct = useCartStore((state) => state.removeProduct);
 
   if (!mounted) return <p>Cargando...</p>;
+
+  if (mounted && productsInCart.length === 0) {
+    redirect("/empty");
+  }
 
   return (
     <>
@@ -52,7 +57,9 @@ export function ProductsInCart() {
 
             <button
               className="hover:underline cursor-pointer mt-3"
-              onClick={() => removeProduct(product)}
+              onClick={() => {
+                removeProduct(product);
+              }}
             >
               Remover
             </button>
