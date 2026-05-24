@@ -1,15 +1,17 @@
 "use client";
 
 import { QuantitySelector, SizeSelector } from "@/components";
-import { Product } from "../../../../generated/prisma/client";
 import { useState } from "react";
-import { Size } from "@/interfaces";
+import type { CartProduct, Product, Size } from "@/interfaces";
+import { useCartStore } from "@/store";
 
 type AddToCartProps = {
   product: Product;
 };
 
 export function AddToCart({ product }: AddToCartProps) {
+  const addProductToCart = useCartStore((state) => state.addProductToCart);
+
   const [size, setSize] = useState<Size | undefined>();
   const [quantity, setQuantity] = useState<number>(1);
   const [posted, setPosted] = useState(false);
@@ -19,7 +21,21 @@ export function AddToCart({ product }: AddToCartProps) {
 
     if (!size) return;
 
-    console.log("Agregando al carrito", { size, quantity });
+    // console.log("Agregando al carrito", { size, quantity });
+    const cartProduct: CartProduct = {
+      id: product.id,
+      slug: product.slug,
+      title: product.title,
+      price: product.price,
+      quantity: quantity,
+      size: size,
+      image: product.images[0],
+    };
+
+    addProductToCart(cartProduct);
+    setQuantity(1);
+    setSize(undefined);
+    setPosted(false);
   };
 
   return (
