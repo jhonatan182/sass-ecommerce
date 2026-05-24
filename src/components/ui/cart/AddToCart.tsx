@@ -5,6 +5,7 @@ import { useState } from "react";
 import { QuantitySelector, SizeSelector } from "@/components";
 import type { CartProduct, Product, Size } from "@/interfaces";
 import { useCartStore } from "@/store";
+import toast from "react-hot-toast";
 
 type AddToCartProps = {
   product: Product;
@@ -38,6 +39,8 @@ export function AddToCart({ product }: AddToCartProps) {
     setQuantity(1);
     setSize(undefined);
     setPosted(false);
+
+    toast.success("Producto agregado al carrito");
   };
 
   return (
