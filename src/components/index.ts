@@ -18,3 +18,4 @@ export * from "./ui/sibebar/SidebarFilters";
 export * from "./ui/sibebar/SidebarItem";
 export * from "./ui/title/Title";
 export * from "./ui/top-menu/TopMenu";
+export * from "./ui/add-to-cart/AddToCart";
