@@ -9,6 +9,7 @@ import {
 import { titleFont } from "@/config/fonts";
 import { getProductBySlug } from "@/actions";
 import { Metadata, ResolvingMetadata } from "next";
+import { currencyFormat } from "@/utils";
 
 type ProductSlugPageProps = {
   params: Promise<{
@@ -73,7 +74,7 @@ export default async function ProductSlugPage({
         <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>
           {product.title}
         </h1>
-        <p className="text-lg mb-5">L.{product.price}</p>
+        <p className="text-lg mb-5">{currencyFormat(product.price)}</p>
 
         <AddToCart product={product} />
 
