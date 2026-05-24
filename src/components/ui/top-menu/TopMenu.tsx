@@ -1,21 +1,25 @@
 "use client";
 
+import Link from "next/link";
 import {
   IoSearchOutline,
   IoCartOutline,
   IoFilterOutline,
   IoMenuOutline,
 } from "react-icons/io5";
-import Link from "next/link";
 
 import { titleFont } from "@/config/fonts";
-import { useUIStore } from "@/store";
+import { useCartStore, useUIStore } from "@/store";
+import { useMounted } from "@/hook";
 
 export function TopMenu() {
+  const mounted = useMounted();
+
   const openSideMenu = useUIStore((state) => state.openSideMenu);
   const openFilters = useUIStore((state) => state.openFilters);
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
   const isFiltersOpen = useUIStore((state) => state.isFiltersOpen);
+  const totalItemsInCart = useCartStore((state) => state.getTotalItems());
 
   return (
     <nav
@@ -62,11 +66,17 @@ export function TopMenu() {
           <IoSearchOutline className="w-5 h-5" />
         </Link>
 
-        <Link href="/cart" className="mx-2">
+        <Link
+          href={totalItemsInCart === 0 && mounted ? "/empty" : "/cart"}
+          className="mx-2"
+        >
           <div className="relative">
-            <span className="absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 bg-blue-700 text-white">
-              3
-            </span>
+            {mounted && totalItemsInCart > 0 && (
+              <span className="absolute fade-in text-xs rounded-full w-4 h-4 flex justify-center items-center px-1 font-bold -top-2 -right-2 bg-blue-700 text-white">
+                {totalItemsInCart}
+              </span>
+            )}
+
             <IoCartOutline className="w-5 h-5" />
           </div>
         </Link>

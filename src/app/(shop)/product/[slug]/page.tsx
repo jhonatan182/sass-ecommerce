@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 
 import {
+  AddToCart,
   ProductMobileSlideshow,
   ProductSlideshow,
-  QuantitySelector,
-  SizeSelector,
   StockLabel,
 } from "@/components";
 import { titleFont } from "@/config/fonts";
@@ -76,19 +75,7 @@ export default async function ProductSlugPage({
         </h1>
         <p className="text-lg mb-5">L.{product.price}</p>
 
-        {/* Selector de tallas */}
-        <SizeSelector
-          selectedSize={product.sizes[0]}
-          availableSizes={product.sizes}
-        />
-
-        {/* Selector de cantidad */}
-        <QuantitySelector quantity={2} />
-
-        {/* Button */}
-        <button className="btn-primary my-5 cursor-pointer">
-          Agregar al carrito
-        </button>
+        <AddToCart product={product} />
 
         {/* Descripción */}
 
