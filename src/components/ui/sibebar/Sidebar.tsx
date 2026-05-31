@@ -65,15 +65,16 @@ export function Sidebar() {
 
         {/* Menu items */}
         {isAuthenticated && (
-          <SidebarItem
-            href="/profile"
-            icon={IoPersonOutline}
-            label="Perfil"
-            onClick={closeSideMenu}
-          />
+          <>
+            <SidebarItem
+              href="/profile"
+              icon={IoPersonOutline}
+              label="Perfil"
+              onClick={closeSideMenu}
+            />
+            <SidebarItem href="/" icon={IoTicketOutline} label="Órdenes" />
+          </>
         )}
-
-        <SidebarItem href="/" icon={IoTicketOutline} label="Órdenes" />
 
         {!isAuthenticated && (
           <SidebarItem
@@ -95,7 +96,6 @@ export function Sidebar() {
                 fetchOptions: {
                   onSuccess() {
                     window.location.replace("/");
-                    toast.success("Sesión cerrada");
                   },
                   onError(context) {
                     console.log(context);
@@ -106,13 +106,16 @@ export function Sidebar() {
             }}
           />
         )}
+        {/* Verifiacar si es admin y este autenticado */}
+        {isAuthenticated && (
+          <>
+            <Divider />
 
-        {/* Divider */}
-        <Divider />
-
-        <SidebarItem href="/" icon={IoShirtOutline} label="Productos" />
-        <SidebarItem href="/" icon={IoTicketOutline} label="Órdenes" />
-        <SidebarItem href="/" icon={IoPeopleOutline} label="Usuarios" />
+            <SidebarItem href="/" icon={IoShirtOutline} label="Productos" />
+            <SidebarItem href="/" icon={IoTicketOutline} label="Órdenes" />
+            <SidebarItem href="/" icon={IoPeopleOutline} label="Usuarios" />
+          </>
+        )}
 
         <div />
       </nav>
