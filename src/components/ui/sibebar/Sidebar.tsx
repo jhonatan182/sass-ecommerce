@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import clsx from "clsx";
 import {
   IoCloseOutline,
@@ -12,6 +13,7 @@ import {
   IoTicketOutline,
 } from "react-icons/io5";
 
+import { signOut, useSession } from "@/lib/auth-client";
 import { useUIStore } from "@/store";
 import {
   Divider,
@@ -23,6 +25,9 @@ import {
 export function Sidebar() {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
   const closeSideMenu = useUIStore((state) => state.closeSideMenu);
+
+  const { data: userData } = useSession();
+  const isAuthenticated = !!userData?.user;
 
   return (
     <div>
@@ -59,10 +64,48 @@ export function Sidebar() {
         </div>
 
         {/* Menu items */}
-        <SidebarItem href="/" icon={IoPersonOutline} label="Perfil" />
+        {isAuthenticated && (
+          <SidebarItem
+            href="/profile"
+            icon={IoPersonOutline}
+            label="Perfil"
+            onClick={closeSideMenu}
+          />
+        )}
+
         <SidebarItem href="/" icon={IoTicketOutline} label="Órdenes" />
-        <SidebarItem href="/" icon={IoLogInOutline} label="Ingresar" />
-        <SidebarItem href="/" icon={IoLogOutOutline} label="Salir" />
+
+        {!isAuthenticated && (
+          <SidebarItem
+            href="/auth/login"
+            icon={IoLogInOutline}
+            label="Ingresar"
+            onClick={closeSideMenu}
+          />
+        )}
+
+        {isAuthenticated && (
+          <SidebarItem
+            href="/"
+            icon={IoLogOutOutline}
+            label="Salir"
+            onClick={async () => {
+              closeSideMenu();
+              await signOut({
+                fetchOptions: {
+                  onSuccess() {
+                    window.location.replace("/");
+                    toast.success("Sesión cerrada");
+                  },
+                  onError(context) {
+                    console.log(context);
+                    toast.error("Error al salir");
+                  },
+                },
+              });
+            }}
+          />
+        )}
 
         {/* Divider */}
         <Divider />

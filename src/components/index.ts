@@ -1,3 +1,6 @@
+export * from "./auth/login-form/LoginForm";
+export * from "./auth/register-form/RegisterForm";
+
 export * from "./product/quantity-selector/QuantitySelector";
 export * from "./product/size-selector/SizeSelector";
 export * from "./product/slideshow/ProductMobileSlideshow";
