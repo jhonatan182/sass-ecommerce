@@ -66,14 +66,13 @@ export function Sidebar() {
         {/* Menu items */}
         {isAuthenticated && (
           <>
-            <SidebarItem href="/" icon={IoTicketOutline} label="Órdenes" />
-
             <SidebarItem
               href="/profile"
               icon={IoPersonOutline}
               label="Perfil"
               onClick={closeSideMenu}
             />
+            <SidebarItem href="/" icon={IoTicketOutline} label="Órdenes" />
           </>
         )}
 
