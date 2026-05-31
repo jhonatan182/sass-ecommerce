@@ -68,6 +68,10 @@ export function LoginForm() {
       <Link href="/auth/new-account" className="btn-secondary text-center">
         Crear una nueva cuenta
       </Link>
+
+      <Link href="/" className="btn-outline mt-4">
+        Continuar como invitado
+      </Link>
     </Form>
   );
 }
