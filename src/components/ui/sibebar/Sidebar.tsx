@@ -28,6 +28,7 @@ export function Sidebar() {
 
   const { data: userData } = useSession();
   const isAuthenticated = !!userData?.user;
+  const isAdmin = userData?.user.role === "admin";
 
   return (
     <div>
@@ -107,7 +108,7 @@ export function Sidebar() {
           />
         )}
         {/* Verifiacar si es admin y este autenticado */}
-        {isAuthenticated && (
+        {isAuthenticated && isAdmin && (
           <>
             <Divider />
 
