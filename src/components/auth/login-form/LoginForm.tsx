@@ -41,7 +41,6 @@ export function LoginForm() {
     }
     if (success) {
       window.location.replace("/");
-      toast.success(success);
       reset();
     }
 
